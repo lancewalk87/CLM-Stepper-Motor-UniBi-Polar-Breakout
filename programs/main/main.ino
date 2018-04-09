@@ -168,10 +168,17 @@ int read_LCD_buttons() { // LCD: UI Configuration
   return btnNONE; 
 }
 
-void motorControl() {
+void motorControl(bool isLeft) {
   for (int i = 0; i < 4; i++) { // index: row
-    for (int j = 0; j < 4; i++) { // index: column
+
+    if (isLeft) {
+     for (int j = 4; j > 0; i--) { // index: column
       digitalWrite(phase[i], indCoilx00[i][j]);  
+     }
+    } else {
+      for (int j = 0; j < 4; i++) { // index: column
+        digitalWrite(phase[i], indCoilx00[i][j]);  
+      }
     }
   }
 }
